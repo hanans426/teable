@@ -1,0 +1,13 @@
+HelmChartPath: ''
+RuntimeType: Container
+ServiceType: private
+ArtifactSourceType: DockerCompose
+ServiceBuildRegion: ap-southeast-1
+RepoName: hanans426/teable
+DockerComposeEnvPath: dockers/examples/standalone/.env
+RegionId: cn-hangzhou
+CustomParameters: ''
+DockerComposeYamlPath: dockers/examples/standalone/docker-compose.yaml
+Owner: hanans426
+Branch: develop
+Platform: github
