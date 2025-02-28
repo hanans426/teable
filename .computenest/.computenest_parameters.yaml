@@ -1,4 +1,3 @@
-HelmChartPath: ''
 RuntimeType: Container
 ServiceType: private
 ArtifactSourceType: DockerCompose

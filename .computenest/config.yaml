@@ -64,11 +64,11 @@ Artifact:
       CommandContent: |-
         mkdir -p /root/application
         mkdir -p "/root/application/dockers/examples/standalone"
-        if [ -e "/root/code/dockers/examples/standalone/docker-compose.yaml" ]; then cp -r "/root/code/dockers/examples/standalone/docker-compose.yaml" "/root/application/dockers/examples/standalone/"; fi
-        if [ -e "/root/code/dockers/examples/standalone/.env" ]; then cp -r "/root/code/dockers/examples/standalone/.env" "/root/application/dockers/examples/standalone/"; fi
-        if [ -e "/root/code/dockers/examples/standalone/teable-db" ]; then cp -r "/root/code/dockers/examples/standalone/teable-db" "/root/application/dockers/examples/standalone/"; fi
         if [ -e "/root/code/dockers/examples/standalone/teable-data" ]; then cp -r "/root/code/dockers/examples/standalone/teable-data" "/root/application/dockers/examples/standalone/"; fi
+        if [ -e "/root/code/dockers/examples/standalone/teable-db" ]; then cp -r "/root/code/dockers/examples/standalone/teable-db" "/root/application/dockers/examples/standalone/"; fi
+        if [ -e "/root/code/dockers/examples/standalone/.env" ]; then cp -r "/root/code/dockers/examples/standalone/.env" "/root/application/dockers/examples/standalone/"; fi
+        if [ -e "/root/code/dockers/examples/standalone/docker-compose.yaml" ]; then cp -r "/root/code/dockers/examples/standalone/docker-compose.yaml" "/root/application/dockers/examples/standalone/"; fi
         cd /root/application
         sed -i 's/pull_policy: always/pull_policy: if_not_present/g' dockers/examples/standalone/docker-compose.yaml
-        docker compose -f dockers/examples/standalone/docker-compose.yaml build
-        docker compose -f dockers/examples/standalone/docker-compose.yaml pull || true;
+        docker compose -f dockers/examples/standalone/docker-compose.yaml build 
+        docker compose -f dockers/examples/standalone/docker-compose.yaml pull 2>&1 | stdbuf -oL grep -viE 'Downloading|sha256|extracting|KiB|Downloaded' || true;
